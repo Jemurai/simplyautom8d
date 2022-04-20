@@ -13,4 +13,6 @@ jobs:
     - name: Check out Repo
       uses: actions/checkout@v2
     - run: ./cisa-known-exploited.sh > cisa.txt
+    - run: cat ./cisa.txt
     - run: ./slackmessage.sh cisa.txt
+    - run: echo $SLACK_WEBHOOK_URL
