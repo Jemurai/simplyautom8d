@@ -1,11 +1,7 @@
-# Jemurai Simple Intel
+# Jemurai Simply Autom8d
 
-Simple Intel is a project to help organizations identify important
-security information and work it into their workflows.
-
-The basic idea is to grab some of the most canonical data on
-vulnerabilities (CISA, NVD) and then to make it easy to build
-alerting around these in your automation flows.
+Simply Autom8d is a project to help organizations to do
+simple security automations.
 
 ## Design
 
@@ -20,15 +16,21 @@ very basic Unix commands to assemble the output.  Things like:
 We hope this makes them easy to port into different automation flows.
 We also hope this will make it easy to add new types of data sources.
 
-## Sources of Information
+We tried to make it so that the same scripts will work locally
+and in a Github Action without requiring much more than a shell.
 
-Some great foundational resources for threat information are
-the CISA catalog of known exploited vulnerabilities and the
-National Vulnerability Database.  These can be challenging to
-use or pay appropriate attention to.  This project includes
-scripts to try to simplify programmatic access.
+## Automations
 
-### CISA Known Exploited Vulnerabilities Catalog
+### Pulling Recent Vulnerability Information
+
+The first area of work was to identify important
+security information and work it into workflows.
+
+The basic idea is to grab some of the most canonical data on
+vulnerabilities (CISA, NVD) and then to make it easy to build
+alerting around these in your automation flows.
+
+#### CISA Known Exploited Vulnerabilities Catalog
 
 These are vulnerabilities that are known to be used in the wild
 to attack.
@@ -37,7 +39,7 @@ Our script grabs CISA Known Vulnerabilities and show recent (last two weeks) one
 - `cisa-known-exploited.sh`
 - Reference: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
 
-### NVD CVE's
+#### NVD CVE's
 
 The NVD is a very rich resource but it can be overwhelming at times.
 
@@ -56,7 +58,7 @@ we wanted to look at integrations with Slack and GitHub Actions.
 Use the instructions here to set up slack webhooks:
 https://api.slack.com/messaging/webhooks
 
-We called our Slack application `Simple Intel`.
+We called our Slack application `Simply Autom8d`.
 
 We set up a `#threat-intel` channel in our slack.
 
