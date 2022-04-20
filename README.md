@@ -1,4 +1,4 @@
-# Jemurai SimpleIntel
+# Jemurai Simple Intel
 
 Simple Intel is a project to help organizations identify important
 security information and work it into their workflows.
@@ -71,5 +71,13 @@ to the slack webhook.
 
 ### GitHub Actions
 
+To ease integration, we also have github actions for the
+key scripts in `.github/workflows/`.
 
+For these to work properly and integrate with Slack, we
+need to have a secret defined as follows:
 
+- Name: `SLACK_WEBHOOK_URL`
+- Value: The actual webhook url
+
+See:  https://docs.github.com/en/actions/security-guides/encrypted-secrets

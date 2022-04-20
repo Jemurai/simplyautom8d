@@ -12,5 +12,4 @@ jobs:
     - name: Check out Repo
       uses: actions/checkout@v2
     - run: ./nvd-vulns.sh > nvdcve.txt
-    #- run: cat ./cisa.txt
     - run: ./slackmessage.sh nvdcve.txt ${{ secrets.SLACK_WEBHOOK_URL }}
