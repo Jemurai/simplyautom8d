@@ -7,6 +7,18 @@
 # A simple helper by Jemurai.
 filename=$1
 echo "Processing " + $filename
+case "$(uname -s)" in
+    Darwin)
+        SLACK_WEBHOOK_URL=$SLACK_WEBHOOK_URL
+        ;;
+    Linux)
+        # Assuming in a github action if on linux ... 
+        SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }}
+        ;;
+    *)
+        echo "Slack webhook not found"
+        ;;
+esac
 #echo "Sending to Slack " + $SLACK_WEBHOOK_URL
 while read line
 do
