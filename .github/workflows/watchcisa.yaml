@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Simple Intel Watch CISA
     steps:
-    - run: apt-get install -y curl sed awk jq
+    #- run: apt-get install -y curl sed awk jq
     - name: Check out Repo
       uses: actions/checkout@v2
     - run: cisa-known-exploited.sh > cisa.txt
