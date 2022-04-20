@@ -1,0 +1,16 @@
+name: Simple Intel - Watch CISA
+on: 
+  push:
+      branches: [ main ]
+  schedule:
+    - cron:  '0 1 * * *'      # Runs every day At 01:00.
+jobs:
+  watch_cisa:
+    runs-on: ubuntu-latest
+    name: Simple Intel Watch CISA
+    steps:
+    - run: apt-get install -y curl sed awk jq
+    - name: Check out Repo
+      uses: actions/checkout@v2
+    - run: cisa-known-exploited.sh > cisa.txt
+    - run: slackmessage.sh cisa.txt
