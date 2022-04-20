@@ -3,16 +3,14 @@ on:
   push:
       branches: [ main ]
   schedule:
-    - cron:  '0 1 * * *'      # Runs every day At 01:00.
+    - cron:  '30 6 * * 1'      # Runs every Monday at 6:30.  See:  crontab.guru.
 jobs:
   watch_cisa:
     runs-on: ubuntu-latest
-    name: Simple Intel Watch CISA
+    name: Simple Intel Watch CISA 
     steps:
-    #- run: apt-get install -y curl sed awk jq
     - name: Check out Repo
       uses: actions/checkout@v2
     - run: ./cisa-known-exploited.sh > cisa.txt
-    - run: cat ./cisa.txt
+    #- run: cat ./cisa.txt
     - run: ./slackmessage.sh cisa.txt ${{ secrets.SLACK_WEBHOOK_URL }}
-    

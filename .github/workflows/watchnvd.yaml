@@ -1,0 +1,16 @@
+name: Simple Intel - Watch NVD
+on: 
+  push:
+      branches: [ main ]
+  schedule:
+    - cron:  '35 6 * * 1'      # Runs every Monday at 6:30.  See:  crontab.guru.
+jobs:
+  watch_cisa:
+    runs-on: ubuntu-latest
+    name: Simple Intel Watch NVD 
+    steps:
+    - name: Check out Repo
+      uses: actions/checkout@v2
+    - run: ./nvd-vulns.sh > nvdcve.txt
+    #- run: cat ./cisa.txt
+    - run: ./slackmessage.sh nvdcve.txt ${{ secrets.SLACK_WEBHOOK_URL }}

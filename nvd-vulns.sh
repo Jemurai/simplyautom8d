@@ -8,8 +8,18 @@
 curl https://nvd.nist.gov/feeds/json/cve/1.1/nvdcve-1.1-recent.json.gz > nvdcve.json.gz
 gunzip nvdcve.json.gz
 
-DAT=$(date -v-14d +%Y-%m-%d)
-echo "DAT is " $DAT
+case "$(uname -s)" in
+    Darwin)
+        DAT=$(date -v-7d +%Y-%m-%d)
+        ;;
+    Linux)
+        DAT=$(date --date "7 days ago" +%Y-%m-%d)
+        ;;
+    *)
+        echo "Date not found"
+        ;;
+esac
+echo "DATE is " $DAT
 cat nvdcve.json | jq '.CVE_Items[] | (.lastModifiedDate) + " " + (.cve | .CVE_data_meta | .ID | tostring) + " " + (.cve | .description | .description_data[] | .value | tostring)' > nvdcve.1.txt
 sed 's/T[0-9][0-9]:[0-9][0-9]Z//g' nvdcve.1.txt > nvdcve.2.txt
 sed 's/\"//g' nvdcve.2.txt > nvdcve.3.txt
