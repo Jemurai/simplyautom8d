@@ -12,5 +12,5 @@ jobs:
     #- run: apt-get install -y curl sed awk jq
     - name: Check out Repo
       uses: actions/checkout@v2
-    - run: cisa-known-exploited.sh > cisa.txt
-    - run: slackmessage.sh cisa.txt
+    - run: ./cisa-known-exploited.sh > cisa.txt
+    - run: ./slackmessage.sh cisa.txt
