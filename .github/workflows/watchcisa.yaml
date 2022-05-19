@@ -1,7 +1,7 @@
 name: Simple Intel - Watch CISA
 on: 
-  push:
-      branches: [ main ]
+  #push:
+  #    branches: [ main ]
   schedule:
     - cron:  '30 6 * * 1'      # Runs every Monday at 6:30.  See:  crontab.guru.
 jobs:
