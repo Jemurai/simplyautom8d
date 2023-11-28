@@ -1,7 +1,5 @@
 name: Simple Intel - Watch CISA
 on: 
-  #push:
-  #    branches: [ main ]
   schedule:
     - cron:  '30 6 * * 1'      # Runs every Monday at 6:30.  See:  crontab.guru.
 jobs:
@@ -12,5 +10,4 @@ jobs:
     - name: Check out Repo
       uses: actions/checkout@v2
     - run: ./cisa-known-exploited.sh > cisa.txt
-    #- run: cat ./cisa.txt
     - run: ./slackmessage.sh cisa.txt ${{ secrets.SLACK_WEBHOOK_URL }}
